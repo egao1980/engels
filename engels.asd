@@ -2,12 +2,12 @@
   :version "0.1.0"
   :author "Nikolai Matiushev"
   :license "MIT"
-  :defsystem-depends-on (:lassie)
-  :depends-on ("lass" "lassie")
+  :defsystem-depends-on (:classie)
+  :depends-on ("lass" "classie")
   :components ((:module "src"
                 :components
                 ((:file "main")
-                 (:lassie-file "engels" :output "../css/engels.css")))
+                 (:classie-file "engels" :output "../css/engels.css")))
                (:module "css"
                 :depends-on ("src")
                 :components
