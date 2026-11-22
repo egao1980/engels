@@ -1,57 +1,71 @@
-(:let* (
-       ;; Basic stylings
-       (br "4px")
-       (xs-pad "4px")
-       (sm-pad "8px")
-       (md-pad "16px")
-       (lg-pad "20px")
-       (xlg-pad "40px")
-       (trans "0.3s")
-       
-       ;; Breakpoints
-       (small-breakpoint "400px")
-       (large-breakpoint "768px")
-       
-       ;; Colors
-       (primary "#007bff")
-       (accent "#64ffda")
-       (red "#f44336")
-       (yellow "#ffeb3b")
-       (grey "#f7f7f9")
-       (white "#fff")
-       (black "#000")
+;;;; engels: Marx (https://github.com/mblode/marx, MIT, Copyright (c) Matthew
+;;;; Blode) as LASS. Compiled by css-backend-lass; see engels.asd.
+;;;;
+;;;; Sizes are plain values. Colours are custom properties: (:engels-theme)
+;;;; writes --engels-* for light and dark (src/variables.lisp), and each
+;;;; colour name below is bound to its var(--engels-*).
 
-       ;;Links
-       (link-color #(primary)) 
-       (link-hover-color  (darken #(link-color) 15%))
-       
-       ;; Text
-       (text "rgba(0, 0, 0, 0.8)")
-       (secondary "rgba(0, 0, 0, 0.54)")
-       (disabled "rgba(0, 0, 0, 0.38)")
-       (dividers "rgba(0, 0, 0, 0.12)")
-       
-       ;; Font
-       (sans-serif "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol'")
-       (serif "Georgia, Times, 'Times New Roman', serif")
-       (monospace "Menlo, Monaco, Consolas, 'Courier New', monospace")
-       (font-family #(sans-serif))
-        
-       ;; Typography 
-       (font-size "16px")
-       (font-size-small (ceiling (* #(font-size) 0.85)))
-       (font-size-h1 "40px")
-       (font-size-h2 "32px")
-       (font-size-h3 "28px")
-       (font-size-h4 "24px")
-       (font-size-h5 "20px")
-       (font-size-h6 "16px")
-       (line-height 1.5)
-       ;; Other
-       (border (values 1px solid #(dividers)))
-       )
+(:let* (;; Basic stylings
+        (br "4px")
+        (xs-pad "4px")
+        (sm-pad "8px")
+        (md-pad "16px")
+        (lg-pad "20px")
+        (xlg-pad "40px")
+        (trans "0.3s")
+
+        ;; Breakpoints
+        (small-breakpoint "400px")
+        (large-breakpoint "768px")
+
+        ;; Colours (the palettes are in src/variables.lisp)
+        (bg "var(--engels-bg)")
+        (surface "var(--engels-surface)")
+        (code-bg "var(--engels-code-bg)")
+        (text "var(--engels-text)")
+        (secondary "var(--engels-secondary)")
+        (disabled "var(--engels-disabled)")
+        (dividers "var(--engels-dividers)")
+        (primary "var(--engels-primary)")
+        (primary-hover "var(--engels-primary-hover)")
+        (primary-active "var(--engels-primary-active)")
+        (primary-active-border "var(--engels-primary-active-border)")
+        (on-primary "var(--engels-on-primary)")
+        (focus-ring "var(--engels-focus-ring)")
+        (input-focus-border "var(--engels-input-focus-border)")
+        (input-focus-ring "var(--engels-input-focus-ring)")
+        (link "var(--engels-link)")
+        (link-hover "var(--engels-link-hover)")
+        (red "var(--engels-red)")
+        (red-dark "var(--engels-red-dark)")
+        (ok "var(--engels-ok)")
+        (warn "var(--engels-warn)")
+        (mark-bg "var(--engels-mark-bg)")
+        (mark-text "var(--engels-mark-text)")
+
+        ;; Font
+        (sans-serif "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol'")
+        (serif "Georgia, Times, 'Times New Roman', serif")
+        (monospace "Menlo, Monaco, Consolas, 'Courier New', monospace")
+        (font-family #(sans-serif))
+
+        ;; Typography
+        (font-size "16px")
+        (font-size-small (ceiling (* #(font-size) 0.85)))
+        (font-size-h1 "40px")
+        (font-size-h2 "32px")
+        (font-size-h3 "28px")
+        (font-size-h4 "24px")
+        (font-size-h5 "20px")
+        (font-size-h6 "16px")
+        (line-height 1.5)
+
+        ;; Other
+        (border (values 1px solid #(dividers))))
+  (:engels-theme)
   (:include "base.lass")
   (:include "typography.lass")
   (:include "forms.lass")
   (:include "buttons.lass")
-  (:include "tables.lass"))
+  (:include "tables.lass")
+  (:include "canvas.lass"))

@@ -6,3 +6,6 @@
 *.x86f
 *~
 .#*
+cl-repo.lock
+.cl-repository/
+.DS_Store
