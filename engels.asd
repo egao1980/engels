@@ -1,9 +1,9 @@
-;;;; engels 0.2.0: Marx, the classless CSS framework, as LASS on the cl-stack
+;;;; engels 0.2.1: Marx, the classless CSS framework, as LASS on the cl-stack
 ;;;; (css-protocol model, css-backend-lass compiler). Slice H4h-0b-2 of
 ;;;; cl-stack/docs/capabilities/css.md.
 
 (defsystem "engels"
-  :version "0.2.0"
+  :version "0.2.1"
   :author "Nikolai Matiushev"
   :license "MIT"
   :description "LASS counterpart of Marx - classless CSS framework, light and dark, on css-protocol"
@@ -18,6 +18,7 @@
                 ((:file "package")
                  (:file "variables")   ; light / dark palettes -> css-protocol theme
                  (:file "theme")       ; the (:engels-theme) LASS special block
+                 (:static-file "sanitize.lass") ; sanitize.css 13.0.0 base layer
                  (:static-file "base.lass")
                  (:static-file "typography.lass")
                  (:static-file "forms.lass")

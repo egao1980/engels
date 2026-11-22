@@ -1,6 +1,8 @@
 ;;;; engels: Marx (https://github.com/mblode/marx, MIT, Copyright (c) Matthew
 ;;;; Blode) as LASS. Compiled by css-backend-lass; see engels.asd.
 ;;;;
+;;;; Order: the theme, sanitize.css (src/sanitize.lass, CC0), then Marx.
+;;;;
 ;;;; Sizes are plain values. Colours are custom properties: (:engels-theme)
 ;;;; writes --engels-* for light and dark (src/variables.lisp), and each
 ;;;; colour name below is bound to its var(--engels-*).
@@ -63,6 +65,7 @@
         ;; Other
         (border (values 1px solid #(dividers))))
   (:engels-theme)
+  (:include "sanitize.lass")             ; sanitize.css 13.0.0, the base Marx sits on
   (:include "base.lass")
   (:include "typography.lass")
   (:include "forms.lass")
