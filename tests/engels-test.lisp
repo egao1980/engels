@@ -139,6 +139,37 @@
     (ok (equal "#366293" (cdr (assoc "engels-input-focus-border" dark :test #'string=)))))
   (ok (equal "14.00px" (decl-value (find-rule "sup") "font-size")) "ceiling (* 16px 0.85)"))
 
+;;; sanitize.css base layer
+
+(defun rule-position (selectors)
+  (position-if (lambda (n) (and (typep n 'css:rule) (string= selectors (selectors-text n))))
+               (top-rules)))
+
+(deftest sanitize-base-resets
+  (let ((all (find-rule "*,::before,::after"))
+        (table (find-rule ":where(table)"))
+        (controls (find-rule ":where(button, input, select, textarea)")))
+    (ok (equal "border-box" (decl-value all "box-sizing")) "*, ::before, ::after border-box")
+    (ok (equal "collapse" (decl-value table "border-collapse")) "tables collapse borders")
+    (ok (equal "inherit" (decl-value controls "font")) "form controls inherit the font")
+    (ok (equal "inherit" (decl-value controls "letter-spacing")))
+    (ok (equal "var(--engels-surface)" (decl-value (find-rule ":where(dialog)") "background-color"))
+        "dialog colours come from the theme")
+    (ok (null (find-rule ":where(select)")) "the url() select arrow is not ported"))
+  (ok (equal "100%" (decl-value (find-rule "table" (reverse (top-rules))) "width"))
+      "canvas tables fill their container"))
+
+(deftest sanitize-comes-before-marx
+  (let ((theme-end 4)
+        (first-sanitize (rule-position "*,::before,::after"))
+        (last-sanitize (rule-position ":where([type=\"color\" i], [type=\"range\" i])"))
+        (first-marx (rule-position "main,header,footer,article,section,aside,details,summary")))
+    (ok (= theme-end first-sanitize) "sanitize starts right after the theme")
+    (ok (and last-sanitize first-marx (< last-sanitize first-marx)) "and ends before Marx")
+    (ok (< (rule-position ":where(table)") (rule-position "table")))
+    (ok (< (rule-position ":where(button, input, select, textarea)")
+           (rule-position "input:not([type])")))))
+
 ;;; Output
 
 (deftest output-is-deterministic

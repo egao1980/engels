@@ -2,6 +2,11 @@
 ;;;; states its components emit (cl-stack/docs/capabilities/canvas.md), so
 ;;;; engels can be canvas-protocol's default theme. Still no classes.
 
+;;; Tables fill their container (Marx left them shrink-to-fit, so captions
+;;; wrapped narrowly).
+
+(table :width "100%")
+
 ;;; data-layout: stack | row | grid; data-gap: none | s | (m, the default) | l
 
 ("[data-layout=\"stack\"]"

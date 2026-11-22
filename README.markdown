@@ -2,7 +2,7 @@
 
 [Marx](https://github.com/mblode/marx), the classless CSS framework, written in [LASS](https://codeberg.org/shinmera/LASS) and compiled on the cl-stack: [css-backend-lass](https://github.com/egao1980/css-backend-lass) turns `src/*.lass` into the [css-protocol](https://github.com/egao1980/css-protocol) stylesheet model, and the model is serialized to `css/engels.css`. It styles semantic elements only (no classes), in light and dark.
 
-**Status:** 0.2.0 (slice H4h-0b-2 of [cl-stack/docs/capabilities/css.md](https://github.com/egao1980/cl-stack/blob/main/docs/capabilities/css.md)). It is canvas-protocol's default theme (H4h-0b-3).
+**Status:** 0.2.1 (slice H4h-0b-2 of [cl-stack/docs/capabilities/css.md](https://github.com/egao1980/cl-stack/blob/main/docs/capabilities/css.md)). It is canvas-protocol's default theme (H4h-0b-3).
 
 ## Usage
 
@@ -24,6 +24,10 @@ The model can be transformed like any css-protocol stylesheet, for example prune
 ```
 
 Or used without Lisp: link `css/engels.css` (committed; rebuilt by ASDF when a source changes).
+
+## Base layer
+
+Marx is built on [sanitize.css](https://github.com/csstools/sanitize.css), and so is engels: `src/sanitize.lass` is sanitize.css 13.0.0 (`sanitize.css` and `forms.css`) translated rule for rule, compiled after the theme and before the Marx partials. It gives border-box sizing, collapsed table borders and form controls that inherit the font. Its selectors are all `:where(...)`, so the Marx rules win. Differences from upstream: colours come from the theme (`dialog`, control and fieldset borders), and the `select` arrow rules are left out because they use `url()`. 0.2.1 also makes tables full width.
 
 ## Light and dark
 
@@ -57,3 +61,8 @@ The light palette is Marx's. Its derived colours (hover, active, focus) come fro
 ## License
 
 MIT, see [LICENSE](LICENSE). Engels is a port of Marx, MIT, Copyright (c) Matthew Blode; its notice is in LICENSE, and a reference copy of Marx's CSS is in [docs/marx.css](docs/marx.css).
+
+## Credits
+
+- [Marx](https://github.com/mblode/marx), MIT, Copyright (c) Matthew Blode.
+- [sanitize.css](https://github.com/csstools/sanitize.css) 13.0.0 (https://unpkg.com/sanitize.css@13.0.0/), CC0-1.0, Jonathan Neal and Nicolas Gallagher: the base layer in `src/sanitize.lass`.
