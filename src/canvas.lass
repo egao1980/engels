@@ -1,0 +1,100 @@
+;;;; Not in Marx: canvas-protocol's closed data-* vocabulary and the aria-*
+;;;; states its components emit (cl-stack/docs/capabilities/canvas.md), so
+;;;; engels can be canvas-protocol's default theme. Still no classes.
+
+;;; data-layout: stack | row | grid; data-gap: none | s | (m, the default) | l
+
+("[data-layout=\"stack\"]"
+ :display flex
+ :flex-direction column
+ :gap #(md-pad))
+
+("[data-layout=\"row\"]"
+ :display flex
+ :flex-wrap wrap
+ :align-items flex-start
+ :gap #(md-pad))
+
+("[data-layout=\"grid\"]"
+ :display grid
+ :grid-template-columns "repeat(auto-fit, minmax(min(100%, 12rem), 1fr))"
+ :gap #(md-pad))
+
+("[data-layout][data-gap=\"none\"]" :gap 0)
+("[data-layout][data-gap=\"s\"]" :gap #(sm-pad))
+("[data-layout][data-gap=\"l\"]" :gap #(xlg-pad))
+
+;;; data-columns: 1-6 (a fixed grid)
+
+("[data-layout=\"grid\"][data-columns=\"1\"]" :grid-template-columns "repeat(1, minmax(0, 1fr))")
+("[data-layout=\"grid\"][data-columns=\"2\"]" :grid-template-columns "repeat(2, minmax(0, 1fr))")
+("[data-layout=\"grid\"][data-columns=\"3\"]" :grid-template-columns "repeat(3, minmax(0, 1fr))")
+("[data-layout=\"grid\"][data-columns=\"4\"]" :grid-template-columns "repeat(4, minmax(0, 1fr))")
+("[data-layout=\"grid\"][data-columns=\"5\"]" :grid-template-columns "repeat(5, minmax(0, 1fr))")
+("[data-layout=\"grid\"][data-columns=\"6\"]" :grid-template-columns "repeat(6, minmax(0, 1fr))")
+
+(:media
+ (:and screen (:max-width #(small-breakpoint)))
+ ("[data-layout=\"grid\"][data-columns]"
+  :grid-template-columns "minmax(0, 1fr)"))
+
+;;; data-align: start | center | end (table cells, blocks)
+
+("[data-align=\"start\"]" :text-align start)
+("[data-align=\"center\"]" :text-align center)
+("[data-align=\"end\"]" :text-align end)
+("[data-layout][data-align=\"start\"]" :align-items flex-start)
+("[data-layout][data-align=\"center\"]" :align-items center)
+("[data-layout][data-align=\"end\"]" :align-items flex-end)
+
+;;; data-badge: neutral | info | ok | warn | error
+
+("[data-badge]"
+ :display inline-block
+ :padding 0 #(sm-pad)
+ :border 1px solid currentColor
+ :border-radius #(br)
+ :font-size #(font-size-small)
+ :line-height 1.5
+ :white-space nowrap
+ :color #(secondary))
+
+("[data-badge=\"info\"]" :color #(primary))
+("[data-badge=\"ok\"]" :color #(ok))
+("[data-badge=\"warn\"]" :color #(warn))
+("[data-badge=\"error\"]" :color #(red))
+
+;;; aria-* states
+
+("[aria-invalid=\"true\"]"
+ :border-color #(red-dark))
+
+("small[role=\"alert\"]"
+ :color #(red))
+
+("th[aria-sort]" :white-space nowrap)
+("th[aria-sort=\"ascending\"]::after" :content " \\25b2")
+("th[aria-sort=\"descending\"]::after" :content " \\25bc")
+
+("[role=\"tablist\"]"
+ :display flex
+ :flex-wrap wrap
+ :gap #(xs-pad)
+ :border-bottom #(border)
+ :margin-bottom #(md-pad))
+
+("[role=\"tablist\"] [role=\"tab\"]"
+ :background-color transparent
+ :border 0
+ :border-bottom 2px solid transparent
+ :border-radius 0
+ :color #(secondary))
+
+("[role=\"tablist\"] [role=\"tab\"]:hover"
+ :background-color transparent
+ :border-color transparent
+ :color #(text))
+
+("[role=\"tablist\"] [role=\"tab\"][aria-selected=\"true\"]"
+ :border-bottom-color #(primary)
+ :color #(primary))

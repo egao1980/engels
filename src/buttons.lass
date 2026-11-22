@@ -4,7 +4,7 @@
   :background-color #(primary)
   :border #(primary)
   :border-radius #(br)
-  :color #(white)
+  :color #(on-primary)
   :padding #(sm-pad) #(md-pad)
   :display inline-block
   :font-weight 400
@@ -34,9 +34,9 @@
         input
         (:= type (:or submit reset button))))
   ":not(:disabled):active")
-  :background-color (darken #(primary) 0.1)
-  :border-color (darken #(primary) 0.125)
-  :color #(white))
+  :background-color #(primary-active)
+  :border-color #(primary-active-border)
+  :color #(on-primary))
 
 
 ((:and
@@ -45,9 +45,9 @@
         input
         (:= type (:or submit reset button))))
   :hover)
- :background-color (darken #(primary) 0.075)
- :border-color (darken #(primary) 0.1)
- :color #(white))
+ :background-color #(primary-hover)
+ :border-color #(primary-active)
+ :color #(on-primary))
 
 
 ((:and
@@ -57,7 +57,7 @@
         (:= type (:or submit reset button))))
   :focus)
  :outline 0
- :box-shadow 0 0 0 0.2rem (fade-out #(primary) 0.5))
+ :box-shadow 0 0 0 0.2rem #(focus-ring))
 
 ((:and
   (:or button
@@ -69,4 +69,4 @@
  :cursor not-allowed
  :background-color #(primary)
  :border-color #(primary)
- :color #(white))
+ :color #(on-primary))

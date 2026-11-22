@@ -1,4 +1,5 @@
 (body 
+ :background-color #(bg)
  :color #(text)
  :font-family #(font-family)
  :font-size #(font-size)
@@ -58,7 +59,7 @@
 
 
 (pre 
- :background #(grey)
+ :background #(code-bg)
  :color #(text)
  :display block
  :font-family #(monospace)
@@ -82,7 +83,7 @@
 
 
 (a 
- :color #(link-color)
+ :color #(link)
  :text-decoration none
  :background-color transparent)
 
@@ -90,7 +91,7 @@
        (:or
         :hover
         :focus))
- :color (darken #(primary) 0.1)
+ :color #(link-hover)
  :text-decoration underline)
   
 (dl 
@@ -140,5 +141,6 @@
 
 
 (mark 
- :background #(yellow))
+ :background #(mark-bg)
+ :color #(mark-text))
 
